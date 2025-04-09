@@ -1,0 +1,6 @@
+console.log("Era uma vez um prgramador")
+console.log("Ele aprendeu Javascript")
+console.log("Depois de tanto treinar")
+console.log("ficou muito bom")
+console.log("E depois de alguns anos")
+console.log("conseguiu seu primeiro emprego")
