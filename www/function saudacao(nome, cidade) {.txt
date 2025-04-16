@@ -1,0 +1,25 @@
+function saudacao(nome, cidade) {
+ console.log("Olá, " + nome + "! Seja bem-vindo à nossa plataforma. Vejo que você é de " + cidade + "!")
+
+}
+
+saudação(Vitor, Valença)
+
+
+
+
+
+
+
+
+
+
+function calcularMedia(nota1, nota2, nota3) {
+	var media = (nota1 + nota2 + nota3) / 3;
+	if (media >= 7){
+	console.log("Desempenho bom!")
+  } else {
+	console.log("É necessário melhorar")
+ }
+}
+calcularMedia(7, 4, 5)
