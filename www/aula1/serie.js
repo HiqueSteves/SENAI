@@ -1,0 +1,1 @@
+console.log("Minha serie favorita é Rick and Morty")
