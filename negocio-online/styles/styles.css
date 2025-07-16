@@ -1,0 +1,33 @@
+html {
+    font-family: Poppins;
+    color: #333
+}
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    margin-top: 60px;
+    border-radius: 5px;
+    border-color: #333;
+    border-width: 3px;
+    border: #333;
+}
+
+img {
+    width: 450px;
+}
+
+body {
+    border-radius: 5px;
+    border-color: #333;
+}
+
+p {
+    margin-block: 20px;
+}
+
+footer {
+    margin-top: 80px;
+}
