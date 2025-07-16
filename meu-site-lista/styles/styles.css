@@ -12,3 +12,12 @@ html {
     color: #333
 }
 
+/*.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}*/
+
+img {
+    width: 450px;
+}
