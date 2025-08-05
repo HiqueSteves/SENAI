@@ -85,10 +85,34 @@ body {
     text-align: center;
 }
 
+
 .conteudo h2 {
     font-size: 2rem;
     color: #111827;
     margin-bottom: 2rem;    
+}
+
+.depoimentos {
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: space-between;
+    padding: 4rem 2rem;
+}
+
+.depoimentos h2 {
+    font-size: 2rem;
+    color: #111827;
+    margin-bottom: 2rem;    
+}
+
+.depoimentos p {
+    color: #4b5563;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.depoimentos span {
+    color: #4f46e5;
 }
 
 .cards {
@@ -104,13 +128,35 @@ body {
     padding: 2rem 1rem;
     border-radius: 1rem;
     max-width: 300px;
-    box-shadow: 0 4px 6px #4F46E5;
+    box-shadow: 0 4px 6px #E0E7FF;
     transition: transform 0.3s;
+}
+
+.depoimento {
+    background-color:  #ffffff;
+    color: #4F46E5;
+    padding: 2rem 1rem;
+    border-radius: 1rem;
+    max-width: 300px;
+    box-shadow: 0 4px 6px #E0E7FF;
+    transition: transform 0.3s;
+}
+
+.depoimento img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
 }
 
 .card p {
     color: #6b7280;
     padding: 0.7rem;
+}
+
+.card2 p {
+    color: #6b7280;
+    padding: 0.7rem;  
 }
 
 .card:hover {
