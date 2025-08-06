@@ -163,3 +163,60 @@ body {
     cursor: pointer;
     transform: translateY(-0.3rem);
 }
+
+.exemplo-card img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+}
+
+.exemplos {
+    padding: 4rem 2rem;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.exemplos h2 {
+    font-size: 2rem;
+    color: #111827;
+    margin-bottom: 0.5rem;
+}
+
+.exemplos-descricao {
+    color: #687280;
+    margin-bottom: 2.5rem;
+    font-size: 1rem;
+}
+
+.exemplos-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.exemplo-card {
+    background-color: #f3f4f6;
+    border-radius: 1rem;
+    overflow: hidden;
+    max-width: 300px;
+    box-shadow: 0 4px 8px rgba(0 ,0 , 0,0.05);
+    transition: transform 0.3s;
+}
+
+.exemplo-card:hover {
+    transform: translateY(-5px);
+    cursor: pointer;
+}
+
+.exemplo-card h3 {
+    font-size: 1.25rem;
+    margin: 1rem 1rem 0.5rem;
+    color: #4f46e5;
+}
+
+.exemplo-card p {
+    color: #485563;
+    margin: 0 1rem 1.5rem;
+    font-size: 0.95rem;
+}
