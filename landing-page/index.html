@@ -5,93 +5,171 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Site de Demonstração</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
 
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="logo">Frontend Demo</div>
-            <ui class="nav-links">
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">Conteúdo</a></li>
-                <li><a href="#">Depoimentos</a></li>
-                <li><a href="#">Exemplos</a></li>
-                <li><a href="#">Tutorial</a></li>
-        </nav>
-    </header>
+    <nav class="navbar">
+        <div class="logo">Frontend Demo</div>
+        <button class="menu-toggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <ul class="nav-links">
+            <li><a href="#">Início</a></li>
+            <li><a href="#">Conteúdo</a></li>
+            <li><a href="#">Depoimentos</a></li>
+            <li><a href="#">Exemplos</a></li>
+            <li><a href="#">Tutorial</a></li>
+        </ul>
+    </nav>
 
     <main>
         <section class="hero">
             <div class="hero-texto">
-                <h1>Construa interfaces. Aprenda na Prática</h1>
-                <p>Explore conceitos modernos de HTML, CSS e JavaScript com exemplos visuais e interativos</p>
+                <h1>Construa Interfaces. Aprenda na Prática.</h1>
+                <p>Explore conceitos modernos de HTML, CSS e JavaScript
+                    com exemplos visuais e interativos.</p>
                 <a href="cadastro.html" class="btn-cta">Começar Agora</a>
             </div>
             <div class="hero-imagem">
-                <img src="images/hero-illustration.svg" alt="ilustração de programação">
+                <img src="images/hero-illustration.svg" alt="Ilustração de programação web">
+            </div>
+        </section>
+
+        <section class="conteudo">
+            <h2>O que você vai aprender</h2>
+            <div class="cards">
+                <div class="card">
+                    <h3>HTML</h3>
+                    <p>Estruturação de páginas com semântica e boas práticas.</p>
+                </div>
+                <div class="card">
+                    <h3>CSS</h3>
+                    <p>Estilização moderna com cores, fontes e layout responsivo.</p>
+                </div>
+                <div class="card">
+                    <h3>JavaScript</h3>
+                    <p>Interatividade e lógica com manipulação de eventos e DOM.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="depoimentos">
+            <h2>O que dizem nossos alunos</h2>
+            <div class="depoimentos-grid">
+                <div class="depoimento">
+                    <img src="images/aluno1.jpg" alt="Foto do aluno João">
+                    <p>"Aprender frontend ficou muito mais fácil com esse projeto. Agora consigo criar minhas próprias
+                        páginas!"</p>
+                    <span>João Pereira</span>
+                </div>
+                <div class="depoimento">
+                    <img src="images/aluno2.jpg" alt="Foto da aluna Maria">
+                    <p>"As explicações são diretas e os exemplos me ajudaram a entender o que eu achava impossível."</p>
+                    <span>Maria Oliveira</span>
+                </div>
+                <div class="depoimento">
+                    <img src="images/aluno3.png" alt="Foto da aluna Ana">
+                    <p>"O projeto me deu confiança para montar meu portfólio e participar de processos seletivos."</p>
+                    <span>Ana Costa</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="exemplos">
+            <h2>Exemplos Práticos</h2>
+            <p class="exemplos-descricao">Veja alguns projetos criados com os conceitos aprendidos nas aulas.</p>
+            <div class="exemplos-grid">
+                <div class="exemplo-card">
+                    <img src="images/exemplo1.jpg" alt="Exemplo de página HTML">
+                    <h3>Portfólio Pessoal</h3>
+                    <p>Site de apresentação com HTML semântico e estilização com CSS moderno.</p>
+                </div>
+                <div class="exemplo-card">
+                    <img src="images/exemplo2.jpg" alt="Exemplo de cardápio digital">
+                    <h3>Cardápio Digital</h3>
+                    <p>Projeto interativo com botões e imagens simulando um site de lanchonete.</p>
+                </div>
+                <div class="exemplo-card">
+                    <img src="images/exemplo3.jpg" alt="Exemplo de conversor de moedas">
+                    <h3>Conversor de Moedas</h3>
+                    <p>Pequena aplicação com JavaScript para calcular conversões em tempo real.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="tutorial">
+            <h2>Como Funciona o Aprendizado</h2>
+            <p class="tutorial-descricao">Veja o passo a passo que você vai seguir para dominar o desenvolvimento
+                Frontend.</p>
+
+            <div class="passos">
+                <div class="passo">
+                    <div class="numero">1</div>
+                    <div class="conteudo-passo">
+                        <h3>Fundamentos de HTML</h3>
+                        <p>Aprenda a estruturar páginas com semântica, acessibilidade e boas práticas.</p>
+                    </div>
+                </div>
+                <div class="passo">
+                    <div class="numero">2</div>
+                    <div class="conteudo-passo">
+                        <h3>Estilização com CSS</h3>
+                        <p>Crie layouts modernos com cores, fontes, espaçamentos e responsividade.</p>
+                    </div>
+                </div>
+                <div class="passo">
+                    <div class="numero">3</div>
+                    <div class="conteudo-passo">
+                        <h3>Interatividade com JavaScript</h3>
+                        <p>Adicione vida à sua página com eventos, manipulação de DOM e lógica de programação.</p>
+                    </div>
+                </div>
+                <div class="passo">
+                    <div class="numero">4</div>
+                    <div class="conteudo-passo">
+                        <h3>Projeto Final</h3>
+                        <p>Coloque tudo em prática desenvolvendo um site completo e visualmente atrativo.</p>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
-    <section class="conteudo">
-        <h2>O que você vai aprender</h2>
-        <div class="cards">
-            <div class="card">
-                <h3>HTML</h3>
-                <p>Estruturação de páginas com semântica e boas práticas.</p>
+
+
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <h3>Frontend Demo</h3>
+                <p>Aprenda criando interfaces reais com HTML, CSS e JS.</p>
             </div>
-            <div class="card">
-                <h3>CSS</h3>
-                <p>Estilização moderna com cores, fontes e layout responsivo.</p>
-            </div>
-            <div class="card">
-                <h3>JavaScript</h3>
-                <p>Interatividade e lógica com manipulação de eventos e DOM.</p>
-            </div>
+            <ul class="footer-links">
+                <li><a href="#">Início</a></li>
+                <li><a href="#">Conteúdo</a></li>
+                <li><a href="#">Depoimentos</a></li>
+                <li><a href="#">Exemplos</a></li>
+                <li><a href="#">Tutorial</a></li>
+            </ul>
         </div>
-    </section>
-    <section class="depoimentos">
-        <h2>O que dizem os alunos</h2>
-        <div class="cards">
-            <div class="depoimento">
-                <img src="images/aluno1.jpg" alt="foto do aluno João">
-                <p>"Aprender frontend ficou muito mais fácil com esse projeto. Agora consigo criar minhas próprias
-                    páginas!"</p>
-                <h3>João Pereira</h3>
-            </div>
-            <div class="depoimento">
-                <img src="images/aluno2.jpg" alt="foto da aluna Maria">
-                <p>"As explicações são diretas e os exemplos me ajudaram a entender o que eu achava impossível."</p>
-                <h3>Maria Oliveira</h3>
-            </div>
-            <div class="depoimento">
-                <img src="images/aluno3.png" alt="foto da aluna Ana">
-                <p>"O projeto meu deu confiança para montar meu portfólio e participar de processos seletivos."</p>
-                <h3>Ana Costa</h3>
-            </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Frontend Demo. Todos os direitos reservados.</p>
         </div>
-    </section>
-    <section class="exemplos">
-        <h2>Exemplos Práticos</h2>
-        <p class="exemplos-descrição">Veja alguns projetos criados com os conceitos aprendidos nas aulas.</p>
-        <div class="exemplos-grid">
-            <div class="exemplo-card">
-                <img src="images/exemplo1.jpg" alt="Exemplo de página HTML">
-                <h3>Portfólio Pessoal</h3>
-                <p>Site de apresentação com HTML semântico e estilização com CSS moderno.</p>
-            </div>
-            <div class="exemplo-card">
-                <img src="images/exemplo2.jpg" alt="Exemplo de cardápio digital">
-                <h3>Cardápio Digital</h3>
-                <p>Projeto interativo com botões e imagens simulando um site de lanchonete.</p>
-            </div>
-            <div class="exemplo-card">
-                <img src="images/exemplo3.jpg" alt="Exemplo de conversor de moedas.">
-                <h3>Conversor de Moedas.</h3>
-                <p>Pequena aplicação com JavaScript para calcular conversões em tempo real.</p>
-            </div>
-        </div>
-    </section>
+    </footer>
+    <script>
+        const toggle = document.querySelector(".menu-toggle");
+        const navLinks = document.querySelector(".nav-links");
+
+        toggle.addEventListener("click", () => {
+            toggle.classList.toggle("active");
+            navLinks.classList.toggle("show");
+        });
+    </script>
 </body>
 
 </html>
