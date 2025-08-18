@@ -1,0 +1,39 @@
+.navbar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.navbar__inner {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar__brand {
+  font-weight: 900;
+  letter-spacing: .4px;
+}
+
+.navbar__links {
+  list-style: none;
+  display: flex;
+  gap: 16px;
+}
+
+.navbar__links a {
+  color: var(--text);
+  text-decoration: none;
+  padding: 8px 10px;
+  border-radius: 10px;
+  transition: background-color .15s ease;
+}
+
+.navbar__links a:hover {
+  background: var(--surface-2);
+}
