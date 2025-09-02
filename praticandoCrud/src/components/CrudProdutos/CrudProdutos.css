@@ -1,0 +1,114 @@
+.crud {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: #121218; /* mesmo fundo do header */
+  border-radius: 0.6rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  color: #ccc;
+}
+
+.produto-form {
+  margin-bottom: 2rem;
+}
+
+.linha {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+label {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+input {
+  margin-top: 0.4rem;
+  padding: 0.6rem;
+  border: 1px solid #222;
+  border-radius: 0.4rem;
+  background: #0b0b0f;
+  color: #fff;
+}
+
+input::placeholder {
+  color: #666;
+}
+
+.botoes {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+/* Botão principal (roxo, destaque igual active link) */
+.btn.primario {
+  background: #6c5ce7;
+  color: #fff;
+}
+.btn.primario:hover {
+  background: #5846d6;
+}
+
+/* Botão secundário (cinza escuro) */
+.btn.secundario {
+  background: #333;
+  color: #ccc;
+}
+.btn.secundario:hover {
+  background: #444;
+  color: #fff;
+}
+
+/* Botão de perigo (vermelho) */
+.btn.perigo {
+  background: #d63031;
+  color: #fff;
+}
+.btn.perigo:hover {
+  background: #b02526;
+}
+
+.lista {
+  margin-top: 1rem;
+}
+
+.vazio {
+  text-align: center;
+  color: #888;
+  padding: 1rem;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  background: #1b1b22;
+  padding: 0.8rem 1rem;
+  border-radius: 0.4rem;
+  margin-bottom: 0.6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+}
+
+.acoes {
+  display: flex;
+  gap: 0.5rem;
+}

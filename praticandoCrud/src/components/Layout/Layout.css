@@ -1,0 +1,30 @@
+/* Layout.css */
+.nav {
+  display: flex;
+  gap: 1rem;
+}
+.link {
+  text-decoration: none;
+  color: #ccc;
+  font-weight: 600;
+}
+.link.active {
+  color: #fff;
+  background: #6c5ce7;
+  padding: .4rem .6rem;
+  border-radius: .4rem;
+}
+.header {
+  background: #121218;
+  padding: 1rem;
+}
+.main {
+  padding: 1.5rem 1rem;
+  min-height: 60vh;
+}
+.footer {
+  padding: 1rem;
+  border-top: 1px solid #222;
+  text-align: center;
+  color: #888;
+}
