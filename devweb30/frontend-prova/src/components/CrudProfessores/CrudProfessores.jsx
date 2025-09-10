@@ -1,38 +1,41 @@
 import { useEffect, useState } from "react";
 import "./CrudProfessores.css";
 
-const API = "http://localhost:4000/api/professores";
-
-
-const categoria = [
-  "Graduado",
-  "Especialista",
-  "Mestre",
-  "Doutor",
-];
+const API_PROF = "http://localhost:4000/api/professores";
+const API_DISC = "http://localhost:4000/api/disciplinas?apenasAtivas=1";
 
 export default function CrudProfessores() {
   const [lista, setLista] = useState([]);
+  const [disciplinas, setDisciplinas] = useState([]);
   const [form, setForm] = useState({
     id: null,
     nome: "",
     email: "",
-    disciplina: "",
+    disciplina_id: "",
     titulacao: "",
     telefone: "",
-    carga_horaria_semanal: ""
+    carga_horaria_semanal: "",
   });
 
   const emEdicao = form.id !== null;
 
+  // Helpers
+  async function carregarProfessores() {
+    const res = await fetch(API_PROF);
+    const dados = await res.json();
+    setLista(dados || []);
+  }
+  async function carregarDisciplinas() {
+    const res = await fetch(API_DISC);
+    const dados = await res.json();
+    setDisciplinas(dados || []);
+  }
+
+  // Carregamento inicial
   useEffect(() => {
-    async function carregarProfessores() {
-      const res = await fetch(API);
-      const dados = await res.json();
-      setLista(dados || []);
-    }
     carregarProfessores();
-  }, [lista]);
+    carregarDisciplinas();
+  }, []); // ← evita loop
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -40,20 +43,32 @@ export default function CrudProfessores() {
   }
 
   function limparForm() {
-    setForm({ id: null, nome: "", email: "", disciplina: "", titulacao: "", telefone: "", carga_horaria_semanal: "" });
+    setForm({
+      id: null,
+      nome: "",
+      email: "",
+      disciplina_id: "",
+      titulacao: "",
+      telefone: "",
+      carga_horaria_semanal: "",
+    });
   }
 
-  async function criarProfessor() {
-    const res = await fetch(API, {
+  async function criarProfessores() {
+    if (!form.nome.trim()) { alert("Informe o nome."); return; }
+    if (!form.email.trim()) { alert("Informe o e-mail."); return; }
+    if (!form.disciplina_id) { alert("Selecione a disciplina."); return; }
+
+    const res = await fetch(API_PROF, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         nome: form.nome,
         email: form.email,
-        disciplina: form.disciplina,
+        disciplina_id: Number(form.disciplina_id), // ← envia o ID
         titulacao: form.titulacao,
         telefone: form.telefone,
-        carga_horaria_semanal: Number(form.carga_horaria_semanal)
+        carga_horaria_semanal: form.carga_horaria_semanal,
       }),
     });
     const novo = await res.json();
@@ -61,50 +76,57 @@ export default function CrudProfessores() {
     limparForm();
   }
 
-  async function atualizarProfessor() {
-    const res = await fetch(`${API}/${form.id}`, {
+  async function atualizarProfessores() {
+    const res = await fetch(`${API_PROF}/${form.id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         nome: form.nome,
         email: form.email,
-        disciplina: form.disciplina,
+        disciplina_id: form.disciplina_id ? Number(form.disciplina_id) : null,
         titulacao: form.titulacao,
         telefone: form.telefone,
-        carga_horaria_semanal: Number(form.carga_horaria_semanal)
+        carga_horaria_semanal: form.carga_horaria_semanal,
       }),
     });
     const atualizado = await res.json();
-
-    setLista((itens) =>
-      itens.map((a) => (a.id === atualizado.id ? atualizado : a))
-    );
+    setLista((itens) => itens.map((a) => (a.id === atualizado.id ? atualizado : a)));
     limparForm();
   }
 
-  async function removerProfessor(id) {
+  async function removerProfessores(id) {
     const confirmar = window.confirm("Tem certeza que deseja remover este professor?");
     if (!confirmar) return;
 
-    await fetch(`${API}/${id}`, { method: "DELETE" });
+    await fetch(`${API_PROF}/${id}`, { method: "DELETE" });
     setLista((itens) => itens.filter((a) => a.id !== id));
   }
 
-  function iniciarEdicao(professor) {
-    setForm(professor);
+  function iniciarEdicao(p) {
+    // Quando editar, manter o disciplina_id; se vier nulo, usar "" para o select
+    setForm({
+      id: p.id,
+      nome: p.nome || "",
+      email: p.email || "",
+      disciplina_id: p.disciplina_id ?? "",
+      titulacao: p.titulacao || "",
+      telefone: p.telefone || "",
+      carga_horaria_semanal: p.carga_horaria_semanal ?? "",
+    });
   }
-  
+
   function onSubmit(e) {
     e.preventDefault();
-    if (emEdicao) atualizarProfessor();
-    else criarProfessor();
+    if (emEdicao) atualizarProfessores();
+    else criarProfessores();
   }
 
   return (
     <div className="card crud">
       <h2 className="crud__title">Gestão de Professores</h2>
-      <p className="crud__subtitle">CRUD simples de professores consumindo API.</p>
+      <p className="crud__subtitle">CRUD simples de Professores consumindo API.</p>
 
+      {/* FORMULÁRIO */}
       <form onSubmit={onSubmit} className="crud__form">
         <div className="form-row">
           <div className="form-field">
@@ -115,52 +137,54 @@ export default function CrudProfessores() {
               name="nome"
               value={form.nome}
               onChange={handleChange}
-              placeholder="Ex.: Maria Eduarda"
+              placeholder="Digite um nome"
             />
           </div>
 
           <div className="form-field">
-            <label className="label">Email</label>
+            <label className="label">E-mail</label>
             <input
               className="input"
               type="email"
               name="email"
               value={form.email}
               onChange={handleChange}
-              placeholder="exemplo@exemplo.com"
+              placeholder="Digite um e-mail"
             />
           </div>
         </div>
+
         <div className="form-row">
           <div className="form-field">
             <label className="label">Disciplina</label>
-            <input
+            <select
               className="input"
-              type="text"
-              name="disciplina"
-              value={form.disciplina}
+              name="disciplina_id"
+              value={form.disciplina_id}
               onChange={handleChange}
-              placeholder="Ex.: Matemática"
-            />
+            >
+              <option value="">Selecione</option>
+              {disciplinas.map((d) => (
+                <option key={d.id} value={d.id}>
+                  {d.nome}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="form-field">
             <label className="label">Titulação</label>
-            <select
-              className="select"
+            <input
+              className="input"
+              type="text"
               name="titulacao"
               value={form.titulacao}
               onChange={handleChange}
-            >
-              <option value="">Selecione uma categoria</option>
-              {categoria.map((c) => (
-                <option key={c} value={c}>
-                  {c}
-                </option>
-              ))}
-            </select>
-          </div>  
+              placeholder="Ex.: Graduado"
+            />
+          </div>
         </div>
+
         <div className="form-row">
           <div className="form-field">
             <label className="label">Telefone</label>
@@ -170,22 +194,23 @@ export default function CrudProfessores() {
               name="telefone"
               value={form.telefone}
               onChange={handleChange}
-              placeholder="Ex.: (99)99999-9999"
+              placeholder="Digite um telefone"
             />
           </div>
 
           <div className="form-field">
-            <label className="label">Carga Horaria Semanal</label>
+            <label className="label">Carga Horária Semanal</label>
             <input
               className="input"
-              type="number"
+              type="text"
               name="carga_horaria_semanal"
               value={form.carga_horaria_semanal}
               onChange={handleChange}
-              placeholder=""
+              placeholder="Digite a carga horária semanal"
             />
           </div>
         </div>
+
         <div className="actions">
           <button type="submit" className="btn btn-primary">
             {emEdicao ? "Atualizar" : "Adicionar"}
@@ -196,36 +221,37 @@ export default function CrudProfessores() {
         </div>
       </form>
 
+      {/* LISTA */}
       <table className="table">
         <thead>
           <tr>
             <th className="th">Nome</th>
-            <th className="th">Email</th>
+            <th className="th">E-mail</th>
             <th className="th">Disciplina</th>
             <th className="th">Titulação</th>
             <th className="th">Telefone</th>
-            <th className="th">Carga Horaria</th>
+            <th className="th">Carga Horária Semanal</th>
             <th className="th">Ações</th>
           </tr>
         </thead>
         <tbody>
           {lista.length === 0 ? (
             <tr>
-              <td className="td" colSpan={3}>— Nenhum professor cadastrado —</td>
+              <td className="td" colSpan={7}>— Nenhum professor cadastrado —</td>
             </tr>
           ) : (
-            lista.map((a) => (
-              <tr key={a.id}>
-                <td className="td">{a.nome}</td>
-                <td className="td">{a.email}</td>
-                <td className="td">{a.disciplina}</td>
-                <td className="td">{a.titulacao}</td>
-                <td className="td">{a.telefone}</td>
-                <td className="td">{a.carga_horaria_semanal}</td>
+            lista.map((p) => (
+              <tr key={p.id}>
+                <td className="td">{p.nome}</td>
+                <td className="td">{p.email}</td>
+                <td className="td">{p.disciplina}</td> {/* nome retornado pelo JOIN */}
+                <td className="td">{p.titulacao}</td>
+                <td className="td">{p.telefone}</td>
+                <td className="td">{p.carga_horaria_semanal}</td>
                 <td className="td">
                   <div className="row-actions">
-                    <button className="btn btn-small" onClick={() => iniciarEdicao(a)}>Editar</button>
-                    <button className="btn btn-small" onClick={() => removerProfessor(a.id)}>Remover</button>
+                    <button className="btn btn-small" onClick={() => iniciarEdicao(p)}>Editar</button>
+                    <button className="btn btn-small" onClick={() => removerProfessores(p.id)}>Remover</button>
                   </div>
                 </td>
               </tr>
