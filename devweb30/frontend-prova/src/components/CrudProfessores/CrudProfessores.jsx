@@ -17,13 +17,18 @@ export default function CrudProfessores() {
     carga_horaria_semanal: "",
   });
 
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1)
+
   const emEdicao = form.id !== null;
 
   // Helpers
-  async function carregarProfessores() {
-    const res = await fetch(API_PROF);
+  async function carregarProfessores(p = page) {
+    const res = await fetch(`${API_PROF}?page=${p}&limit=5`);
     const dados = await res.json();
-    setLista(dados || []);
+    setLista(dados.data || []);
+    setTotalPages(dados.meta.page);
+    setTotalPages(dados.meta.totalPages);
   }
   async function carregarDisciplinas() {
     const res = await fetch(API_DISC);
@@ -33,9 +38,9 @@ export default function CrudProfessores() {
 
   // Carregamento inicial
   useEffect(() => {
-    carregarProfessores();
+    carregarProfessores(page);
     carregarDisciplinas();
-  }, []); // ← evita loop
+  }, [page]); // ← evita loop
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -259,6 +264,23 @@ export default function CrudProfessores() {
           )}
         </tbody>
       </table>
+          <div className="pager">
+            <button
+              className="btn btn-small"
+              onClick={() => setPage((p) => Math.max(1, p - 1))}
+              disabled={page === 1}
+            >
+              Anterior
+            </button>
+            <span>Página {page} de {totalPages}</span>
+            <button
+              className="btn btn-small"
+              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+              disabled={page === totalPages}
+            >
+              Próxima
+            </button>
+          </div>
     </div>
   );
 }
